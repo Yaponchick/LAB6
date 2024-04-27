@@ -26,22 +26,28 @@ namespace LAB6
         {
             foreach (var particle in particles)
             {
-                particle.Life -= 1; // уменьшение здоровья
+                particle.Life -= 1;  
                 if (particle.Life < 0)
                 {
-                    // восстанавливаю здоровье
                     particle.Life = 20 + Particle.rand.Next(100);
-                    // перемещаю частицу в центр
                     particle.X = MousePositionX;
                     particle.Y = MousePositionY;
+
+                    var direction = (double)Particle.rand.Next(360);
+                    var speed = 1 + Particle.rand.Next(10);
+
+                    particle.SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
+                    particle.SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);
+
+                    particle.Radius = 2 + Particle.rand.Next(10);
                 }
                 else
                 {
-                    var directionInRadians = particle.Direction / 180 * Math.PI;
-                    particle.X += (float)(particle.Speed * Math.Cos(directionInRadians));
-                    particle.Y -= (float)(particle.Speed * Math.Sin(directionInRadians));
+                    particle.X += particle.SpeedX;
+                    particle.Y += particle.SpeedY;
                 }
             }
+        
             // генерация частиц
             for (var i = 0; i < 10; ++i)
             {
@@ -49,7 +55,7 @@ namespace LAB6
                 {
                     // а у тут уже наш новый класс используем
                     var particle = new ParticleColorful();
-                    // ну и цвета меняем
+                    // меняем цвета
                     particle.FromColor = Color.Yellow;
                     particle.ToColor = Color.FromArgb(0, Color.Magenta);
                     particle.X = MousePositionX;
@@ -66,7 +72,7 @@ namespace LAB6
         // функция рендеринга
         private void Render(Graphics g)
         {
-            // утащили сюда отрисовку частиц
+            // Отрисовка частиц
             foreach (var particle in particles)
             {
                 particle.Draw(g);
