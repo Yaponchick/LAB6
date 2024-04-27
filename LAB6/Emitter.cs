@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace LAB6
 {
-    class Emitter
+
+   public  class Emitter
     {
         List<Particle> particles = new List<Particle>();
 
-        public List<IImpactPoint> impactPoints = new List<IImpactPoint>(); // <<< ТАК ВОТ
+        public List<IImpactPoint> impactPoints = new List<IImpactPoint>();
+
 
         public int MousePositionX;
         public int MousePositionY;
@@ -50,20 +52,21 @@ namespace LAB6
                     particle.X += particle.SpeedX;
                     particle.Y += particle.SpeedY;
                 }
+
             }
 
             // генерация частиц
             for (var i = 0; i < 10; ++i)
             {
-                if (particles.Count < 500)
+                if (particles.Count < ParticlesCount)
                 {
-                    // а у тут уже наш новый класс используем
+                    /* ну и тут чуток подкрутили */
                     var particle = new ParticleColorful();
-                    // меняем цвета
-                    particle.FromColor = Color.Yellow;
-                    particle.ToColor = Color.FromArgb(0, Color.Magenta);
-                    particle.X = MousePositionX;
-                    particle.Y = MousePositionY;
+                    particle.FromColor = Color.White;
+                    particle.ToColor = Color.FromArgb(0, Color.Black);
+
+                    ResetParticle(particle); // добавили вызов ResetParticle
+
                     particles.Add(particle);
                 }
                 else
@@ -84,6 +87,25 @@ namespace LAB6
             {
                 point.Render(g);
             }
+        }
+
+
+        public int ParticlesCount = 500;
+
+        // добавил новый метод, виртуальным, чтобы переопределять можно было
+        public virtual void ResetParticle(Particle particle)
+        {
+            particle.Life = 20 + Particle.rand.Next(100);
+            particle.X = MousePositionX;
+            particle.Y = MousePositionY;
+
+            var direction = (double)Particle.rand.Next(360);
+            var speed = 1 + Particle.rand.Next(10);
+
+            particle.SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
+            particle.SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);
+
+            particle.Radius = 2 + Particle.rand.Next(10);
         }
     }
 }
