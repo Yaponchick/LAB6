@@ -18,6 +18,8 @@ namespace LAB6
         GravityPoint point1; // добавил поле под первую точку
         GravityPoint point2; // добавил поле под вторую точку
 
+   
+
         public Form1()
         {
             InitializeComponent();
@@ -73,7 +75,7 @@ namespace LAB6
 
         private void picDisplay_MouseMove(object sender, MouseEventArgs e)
         {
-            foreach (var emitter in emitters)
+          /*  foreach (var emitter in emitters)
             {
                 emitter.MousePositionX = e.X;
                 emitter.MousePositionY = e.Y;
@@ -81,8 +83,10 @@ namespace LAB6
 
             // а тут передаем положение мыши, в положение гравитона
             point2.X = e.X;
-            point2.Y = e.Y;
+            point2.Y = e.Y;*/
         }
+
+
 
         private void tbDirection_Scroll(object sender, EventArgs e)
         {
@@ -99,6 +103,54 @@ namespace LAB6
         private void tbGraviton2_Scroll(object sender, EventArgs e)
         {
             point2.Power = tbGraviton2.Value;
+            lblGraviton2.Text = $"{tbGraviton2.Value}°";
         }
+
+
+
+
+
+
+        private Teleporter teleporter; 
+
+        private void picDisplay_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                if (teleporter == null) 
+                {
+                    teleporter = new Teleporter(e.X, e.Y, 40);
+                    emitters[0].impactPoints.Add(teleporter); 
+                }
+                else 
+                {
+                    teleporter.X = e.X;
+                    teleporter.Y = e.Y;
+                }
+            }
+            else if (e.Button == MouseButtons.Right) 
+            {
+                if (teleporter == null) 
+                {
+                    teleporter = new Teleporter(e.X, e.Y, 40);
+                    emitters[0].impactPoints.Add(teleporter);
+                }
+                else 
+                {
+                    teleporter.ExitX = e.X; 
+                    teleporter.ExitY = e.Y;
+                }
+            }
+
+            picDisplay.Invalidate();
+        }
+
+
+
+
+
+
+
+
     }
 }
