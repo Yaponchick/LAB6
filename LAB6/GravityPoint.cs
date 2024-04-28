@@ -37,6 +37,36 @@ namespace LAB6
                    Power,
                    Power
                );
+
+            var stringFormat = new StringFormat();
+            stringFormat.Alignment = StringAlignment.Center;
+            stringFormat.LineAlignment = StringAlignment.Center;
+
+            // обязательно выносим текст и шрифт в переменные
+            var text = $"Я гравитон\nc силой {Power}";
+            var font = new Font("Verdana", 10);
+
+            // вызываем MeasureString, чтобы померить размеры текста
+            var size = g.MeasureString(text, font);
+
+            // рисуем подложнку под текст
+            g.FillRectangle(
+                new SolidBrush(Color.Red),
+                X - size.Width / 2, // так как я выравнивал текст по центру то подложка должна быть центрирована относительно X,Y
+                Y - size.Height / 2,
+                size.Width,
+                size.Height
+            );
+
+            // ну и текст рисую уже на базе переменных
+            g.DrawString(
+                text,
+                font,
+                new SolidBrush(Color.White),
+                X,
+                Y,
+                stringFormat
+            );
         }
     }
 }
