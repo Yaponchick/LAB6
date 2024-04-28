@@ -32,7 +32,7 @@ namespace LAB6
         public int MousePositionX;
         public int MousePositionY;
         public float GravitationX = 0;
-        public float GravitationY = 0;
+        public float GravitationY = 1;
 
         // метод для генирации частиц
         public virtual Particle CreateParticle()
