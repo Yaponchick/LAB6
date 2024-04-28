@@ -50,8 +50,7 @@ namespace LAB6
 
             foreach (var particle in particles)
             {
-                particle.Life -= 1;
-                if (particle.Life < 0)
+                if (particle.Life <= 0)
                 {
                     particle.Life = 20 + Particle.rand.Next(100);
                     particle.X = MousePositionX;
@@ -74,17 +73,17 @@ namespace LAB6
                 }
                 else
                 {
+                    particle.X += particle.SpeedX;
+                    particle.Y += particle.SpeedY;
+
+                    particle.Life -= 1;
                     foreach (var point in impactPoints)
                     {
                         point.ImpactParticle(particle);
                     }
 
-                    // это не трогаем
                     particle.SpeedX += GravitationX;
                     particle.SpeedY += GravitationY;
-
-                    particle.X += particle.SpeedX;
-                    particle.Y += particle.SpeedY;
                 }
 
             }
