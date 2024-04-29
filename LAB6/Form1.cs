@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,16 @@ namespace LAB6
         {
             InitializeComponent();
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
+
+            // Установите изображение в качестве фона формы
+            this.BackgroundImage = Image.FromFile(@"D:\Политехъ\2 курс\4 семестр\Технолоджи программирования\6 Лабораторная работа\LAB6\LAB6\fon1.jpg"); // Замените путь на свой
+            this.BackgroundImageLayout = ImageLayout.Stretch; // Растянуть изображение на всю форму
+
+         /*   picDisplay.BackgroundImage = Image.FromFile(@"D:\Политехъ\2 курс\4 семестр\Технолоджи программирования\6 Лабораторная работа\LAB6\LAB6\galaktika.jpg");
+            picDisplay.BackgroundImageLayout = ImageLayout.Stretch; // Настроить масштабирование изображения
+            picDisplay.Refresh(); // Обновить picDisplay для отображения изменений*/
+
+      
 
 
             this.emitter = new Emitter // создаю эмиттер и привязываю его к полю emitter
@@ -66,7 +77,9 @@ namespace LAB6
 
             using (var g = Graphics.FromImage(picDisplay.Image))
             {
-                g.Clear(Color.Black);
+                /*                g.Clear(Color.Transparent);        
+                */
+                g.Clear(Color.Black);  
                 emitter.Render(g); // а тут теперь рендерим через эмиттер
             }
 
@@ -111,39 +124,47 @@ namespace LAB6
 
 
 
-        private Teleporter teleporter; 
+        private Teleporter teleporter;
 
         private void picDisplay_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left) // Проверяем, что была нажата левая кнопка мыши
             {
-                if (teleporter == null) 
+                if (teleporter == null) // Если телепортёр не существует, создаём его с входом
                 {
                     teleporter = new Teleporter(e.X, e.Y, 40);
-                    emitters[0].impactPoints.Add(teleporter); 
+                    // Задаем начальные координаты выхода равными координатам входа
+                    teleporter.ExitX = e.X;
+                    teleporter.ExitY = e.Y;
+                    emitters[0].impactPoints.Add(teleporter); // Добавляем телепортёр в список точек воздействия
                 }
-                else 
+                else // Если телепортёр уже существует, обновляем его положение входа
                 {
-                    teleporter.X = e.X;
+                    teleporter.X = e.X; // Перемещаем вход в точку клика
                     teleporter.Y = e.Y;
                 }
             }
-            else if (e.Button == MouseButtons.Right) 
+            else if (e.Button == MouseButtons.Right) // Проверяем, что была нажата правая кнопка мыши
             {
-                if (teleporter == null) 
+                if (teleporter == null) // Если телепортёр не существует, создаём его с выходом
                 {
                     teleporter = new Teleporter(e.X, e.Y, 40);
-                    emitters[0].impactPoints.Add(teleporter);
+                    // Задаем начальные координаты входа равными координатам выхода
+                    teleporter.X = e.X;
+                    teleporter.Y = e.Y;
+                    emitters[0].impactPoints.Add(teleporter); // Добавляем телепортёр в список точек воздействия
                 }
-                else 
+                else // Если телепортёр уже существует, обновляем его положение выхода
                 {
-                    teleporter.ExitX = e.X; 
+                    teleporter.ExitX = e.X; // Перемещаем выход в точку клика
                     teleporter.ExitY = e.Y;
                 }
             }
 
+            // Принудительно вызываем перерисовку элемента управления для обновления отображения
             picDisplay.Invalidate();
         }
+
 
 
 

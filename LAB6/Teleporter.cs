@@ -35,9 +35,31 @@ public class Teleporter : IImpactPoint
 
     public override void Render(Graphics g)
     {
-        g.FillEllipse(Brushes.Green, X - Radius, Y - Radius, 2 * Radius, 2 * Radius);
+        Bitmap teleporterImage = new Bitmap(@"D:\Политехъ\2 курс\4 семестр\Технолоджи программирования\6 Лабораторная работа\LAB6\LAB6\fon.jpg");
+        Bitmap exitImage = new Bitmap(@"D:\Политехъ\2 курс\4 семестр\Технолоджи программирования\6 Лабораторная работа\LAB6\LAB6\sol.png");
 
-        g.FillEllipse(Brushes.Blue, ExitX - Radius, ExitY - Radius, 2 * Radius, 2 * Radius);
+        // Отображение изображение
+        g.DrawImage(teleporterImage, X - Radius, Y - Radius, 2 * Radius, 2 * Radius);
+        g.DrawImage(exitImage, ExitX - Radius, ExitY - Radius, 2 * Radius, 2 * Radius);
+
+        // Освобождение ресурсов
+        teleporterImage.Dispose();
+        exitImage.Dispose();
     }
+
+
+    /*   Bitmap teleporterImage = new Bitmap(@"D:\Политехъ\2 курс\4 семестр\Технолоджи программирования\6 Лабораторная работа\LAB6\LAB6\pakman.png");
+       Bitmap exitImage = new Bitmap(@"D:\Политехъ\2 курс\4 семестр\Технолоджи программирования\6 Лабораторная работа\LAB6\LAB6\pakman.png");
+
+
+       public override void Render(Graphics g)
+       {
+           // Рисуем изображение телепорта
+           g.DrawImage(teleporterImage, X - Radius, Y - Radius, 2 * Radius, 2 * Radius);
+
+           // Рисуем изображение выхода
+           g.DrawImage(exitImage, ExitX - Radius, ExitY - Radius, 2 * Radius, 2 * Radius);
+       }*/
+
 }
 

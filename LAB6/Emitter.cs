@@ -10,7 +10,7 @@ namespace LAB6
 
    public  class Emitter
     {
-        List<Particle> particles = new List<Particle>();
+        public List<Particle> particles = new List<Particle>();
 
         public List<IImpactPoint> impactPoints = new List<IImpactPoint>();
 
