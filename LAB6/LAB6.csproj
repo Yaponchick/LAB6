@@ -88,6 +88,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="aka.jpg" />
+    <Content Include="circle.png" />
+    <Content Include="dira.png" />
+    <Content Include="fish.png" />
     <Content Include="galaktika.jpg" />
     <Content Include="igra.jpg" />
     <Content Include="kino.jpg" />

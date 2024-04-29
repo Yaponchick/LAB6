@@ -19,7 +19,8 @@ namespace LAB6
         GravityPoint point1; // добавил поле под первую точку
         GravityPoint point2; // добавил поле под вторую точку
 
-   
+        private bool teleportEnabled = false;
+
 
         public Form1()
         {
@@ -27,14 +28,14 @@ namespace LAB6
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
 
             // Установите изображение в качестве фона формы
-            this.BackgroundImage = Image.FromFile(@"D:\Политехъ\2 курс\4 семестр\Технолоджи программирования\6 Лабораторная работа\LAB6\LAB6\fon1.jpg"); // Замените путь на свой
+            this.BackgroundImage = Image.FromFile(@"D:\Политехъ\2 курс\4 семестр\Технолоджи программирования\6 Лабораторная работа\LAB6\LAB6\fon2.jpg"); // Замените путь на свой
             this.BackgroundImageLayout = ImageLayout.Stretch; // Растянуть изображение на всю форму
 
-         /*   picDisplay.BackgroundImage = Image.FromFile(@"D:\Политехъ\2 курс\4 семестр\Технолоджи программирования\6 Лабораторная работа\LAB6\LAB6\galaktika.jpg");
+            picDisplay.BackgroundImage = Image.FromFile(@"D:\Политехъ\2 курс\4 семестр\Технолоджи программирования\6 Лабораторная работа\LAB6\LAB6\fon2.jpg");
             picDisplay.BackgroundImageLayout = ImageLayout.Stretch; // Настроить масштабирование изображения
-            picDisplay.Refresh(); // Обновить picDisplay для отображения изменений*/
+            picDisplay.Refresh(); // Обновить picDisplay для отображения изменений
 
-      
+
 
 
             this.emitter = new Emitter // создаю эмиттер и привязываю его к полю emitter
@@ -77,9 +78,10 @@ namespace LAB6
 
             using (var g = Graphics.FromImage(picDisplay.Image))
             {
-                /*                g.Clear(Color.Transparent);        
+                g.Clear(Color.Transparent);
+
+                /*                g.Clear(Color.Black);
                 */
-                g.Clear(Color.Black);  
                 emitter.Render(g); // а тут теперь рендерим через эмиттер
             }
 
@@ -128,6 +130,8 @@ namespace LAB6
 
         private void picDisplay_MouseClick(object sender, MouseEventArgs e)
         {
+            if (!teleportEnabled) // Проверяем, включен ли телепорт
+                return;
             if (e.Button == MouseButtons.Left) // Проверяем, что была нажата левая кнопка мыши
             {
                 if (teleporter == null) // Если телепортёр не существует, создаём его с входом
@@ -165,13 +169,30 @@ namespace LAB6
             picDisplay.Invalidate();
         }
 
+        // включалка\выключалка телепортатора
+        private void checkBoxTeleport_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxTeleport.Checked)
+            {
+                // Включаем работу телепорта
+                teleportEnabled = true;
+            }
+            else
+            {
+                // Выключаем работу телепорта
+                teleportEnabled = false;
 
-
-
-
-
-
-
-
+                // Удаляем телепорт с формы
+                if (teleporter != null)
+                {
+                    // Удаляем телепорт из списка точек воздействия
+                    emitters[0].impactPoints.Remove(teleporter);
+                    // Обнуляем переменную teleporter
+                    teleporter = null;
+                    // Принудительно вызываем перерисовку элемента управления для обновления отображения
+                    picDisplay.Invalidate();
+                }
+            }
+        }
     }
 }
