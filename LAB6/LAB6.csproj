@@ -88,18 +88,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="aka.jpg" />
     <Content Include="circle.png" />
-    <Content Include="dira.png" />
-    <Content Include="fish.png" />
-    <Content Include="galaktika.jpg" />
-    <Content Include="igra.jpg" />
-    <Content Include="kino.jpg" />
-    <Content Include="kosmos.jpg" />
-    <Content Include="pakman.png" />
+    <Content Include="circleRGB.png" />
     <Content Include="sol.png" />
-    <Content Include="test.jpg" />
-    <Content Include="test2.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -21,6 +21,7 @@ namespace LAB6
 
         private bool teleportEnabled = false;
         private bool explosionEnabled = false;
+        private Teleporter teleporter;
 
 
         public Form1()
@@ -121,13 +122,6 @@ namespace LAB6
             point2.Power = tbGraviton2.Value;
             lblGraviton2.Text = $"{tbGraviton2.Value}°";
         }
-
-
-
-
-
-
-        private Teleporter teleporter;
 
         private void picDisplay_MouseClick(object sender, MouseEventArgs e)
         {
