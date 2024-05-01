@@ -29,16 +29,12 @@ namespace LAB6
             InitializeComponent();
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
 
-            // Установите изображение в качестве фона формы
-            this.BackgroundImage = Image.FromFile(@"D:\Политехъ\2 курс\4 семестр\Технолоджи программирования\6 Лабораторная работа\LAB6\LAB6\fon2.jpg"); // Замените путь на свой
+            this.BackgroundImage = Image.FromFile(@"D:\Политехъ\2 курс\4 семестр\Технолоджи программирования\6 Лабораторная работа\LAB6\LAB6\fon2.jpg");
             this.BackgroundImageLayout = ImageLayout.Stretch; // Растянуть изображение на всю форму
 
             picDisplay.BackgroundImage = Image.FromFile(@"D:\Политехъ\2 курс\4 семестр\Технолоджи программирования\6 Лабораторная работа\LAB6\LAB6\fon2.jpg");
             picDisplay.BackgroundImageLayout = ImageLayout.Stretch; // Настроить масштабирование изображения
             picDisplay.Refresh(); // Обновить picDisplay для отображения изменений
-
-
-
 
             this.emitter = new Emitter // создаю эмиттер и привязываю его к полю emitter
             {

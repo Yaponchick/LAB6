@@ -17,6 +17,8 @@ namespace LAB6
         public float SpeedY; // скорость перемещения по оси Y
         public float Life; // запас здоровья частицы
 
+        public bool FromTeleporter { get; set; }
+        
         // генератор случайных чисел
         public static Random rand = new Random();
 

@@ -9,9 +9,8 @@ public class Teleporter : IImpactPoint
     public float Y { get; set; } 
     public float ExitX { get; set; } 
     public float ExitY { get; set; }
-    public float Radius { get; set; } 
+    public float Radius { get; set; }
 
-    // Constructor
     public Teleporter(float x, float y, float radius)
     {
         X = x;
@@ -23,23 +22,23 @@ public class Teleporter : IImpactPoint
     public override void ImpactParticle(Particle particle)
     {
         float distanceToEntrance = (float)Math.Sqrt(Math.Pow(X - particle.X, 2) + Math.Pow(Y - particle.Y, 2));
-        float distanceToExit = (float)Math.Sqrt(Math.Pow(ExitX - particle.X, 2) + Math.Pow(ExitY - particle.Y, 2));
+        particle.FromTeleporter = true;
 
-        if (distanceToEntrance <= Radius && distanceToExit > Radius)
+        if (distanceToEntrance <= Radius)
         {
-
-            Color randomColor = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
-
-            if (particle is ParticleColorful colorfulParticle)
-            {
-                colorfulParticle.FromColor = randomColor;
-                colorfulParticle.ToColor = Color.FromArgb(0, randomColor); 
-            }
-
+            // Генерируем случайный угол для направления вылета
             double randomAngle = random.NextDouble() * 2 * Math.PI;
 
+            // Вычисляем новые координаты частицы на основе сгенерированного угла
             particle.X = ExitX + (float)(Radius * Math.Cos(randomAngle));
             particle.Y = ExitY + (float)(Radius * Math.Sin(randomAngle));
+
+            // Изменяем цвет только для частиц, выходящих из телепорта
+            if (particle is ParticleColorful colorfulParticle)
+            {
+                colorfulParticle.FromColor = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
+                colorfulParticle.ToColor = Color.FromArgb(0, colorfulParticle.FromColor);
+            }
         }
     }
 
@@ -57,19 +56,5 @@ public class Teleporter : IImpactPoint
         teleporterImage.Dispose();
         exitImage.Dispose();
     }
-
-    /*   Bitmap teleporterImage = new Bitmap(@"D:\Политехъ\2 курс\4 семестр\Технолоджи программирования\6 Лабораторная работа\LAB6\LAB6\pakman.png");
-       Bitmap exitImage = new Bitmap(@"D:\Политехъ\2 курс\4 семестр\Технолоджи программирования\6 Лабораторная работа\LAB6\LAB6\pakman.png");
-
-
-       public override void Render(Graphics g)
-       {
-           // Рисуем изображение телепорта
-           g.DrawImage(teleporterImage, X - Radius, Y - Radius, 2 * Radius, 2 * Radius);
-
-           // Рисуем изображение выхода
-           g.DrawImage(exitImage, ExitX - Radius, ExitY - Radius, 2 * Radius, 2 * Radius);
-       }*/
-
 }
 

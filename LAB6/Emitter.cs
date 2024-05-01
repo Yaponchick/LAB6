@@ -28,6 +28,7 @@ namespace LAB6
 
         public Color ColorFrom = Color.White; // начальный цвет частицы
         public Color ColorTo = Color.FromArgb(0, Color.Black); // конечный цвет частиц
+      
 
         public int MousePositionX;
         public int MousePositionY;
@@ -97,7 +98,6 @@ namespace LAB6
                 particles.Add(particle);
             }
         }
-
         public void Render(Graphics g)
         {
             foreach (var particle in particles)
@@ -122,16 +122,25 @@ namespace LAB6
             particle.X = X;
             particle.Y = Y;
 
-            var direction = Direction
-                + (double)Particle.rand.Next(Spreading)
-                - Spreading / 2;
-
+            var direction = Direction + (double)Particle.rand.Next(Spreading) - Spreading / 2;
             var speed = Particle.rand.Next(SpeedMin, SpeedMax);
 
             particle.SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
             particle.SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);
 
             particle.Radius = Particle.rand.Next(RadiusMin, RadiusMax);
+
+            // Сброс цвета на начальный
+            if (particle is ParticleColorful colorfulParticle)
+            {
+                colorfulParticle.FromColor = ColorFrom;
+                colorfulParticle.ToColor = ColorTo;
+            }
+
+            particle.FromTeleporter = false;
         }
+
+
+
     }
 }
