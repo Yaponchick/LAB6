@@ -20,6 +20,7 @@ namespace LAB6
         GravityPoint point2; // добавил поле под вторую точку
 
         private bool teleportEnabled = false;
+        private bool explosionEnabled = false;
 
 
         public Form1()
@@ -130,69 +131,77 @@ namespace LAB6
 
         private void picDisplay_MouseClick(object sender, MouseEventArgs e)
         {
-            if (!teleportEnabled) // Проверяем, включен ли телепорт
-                return;
-            if (e.Button == MouseButtons.Left) // Проверяем, что была нажата левая кнопка мыши
+            if (teleportEnabled)
             {
-                if (teleporter == null) // Если телепортёр не существует, создаём его с входом
+                if (e.Button == MouseButtons.Left)
                 {
-                    teleporter = new Teleporter(e.X, e.Y, 40);
-                    // Задаем начальные координаты выхода равными координатам входа
-                    teleporter.ExitX = e.X;
-                    teleporter.ExitY = e.Y;
-                    emitters[0].impactPoints.Add(teleporter); // Добавляем телепортёр в список точек воздействия
+                    if (teleporter == null)
+                    {
+                        teleporter = new Teleporter(e.X, e.Y, 40);
+                        teleporter.ExitX = e.X;
+                        teleporter.ExitY = e.Y;
+                        emitters[0].impactPoints.Add(teleporter);
+                    }
+                    else
+                    {
+                        teleporter.X = e.X;
+                        teleporter.Y = e.Y;
+                    }
                 }
-                else // Если телепортёр уже существует, обновляем его положение входа
+                else if (e.Button == MouseButtons.Right)
                 {
-                    teleporter.X = e.X; // Перемещаем вход в точку клика
-                    teleporter.Y = e.Y;
-                }
-            }
-            else if (e.Button == MouseButtons.Right) // Проверяем, что была нажата правая кнопка мыши
-            {
-                if (teleporter == null) // Если телепортёр не существует, создаём его с выходом
-                {
-                    teleporter = new Teleporter(e.X, e.Y, 40);
-                    // Задаем начальные координаты входа равными координатам выхода
-                    teleporter.X = e.X;
-                    teleporter.Y = e.Y;
-                    emitters[0].impactPoints.Add(teleporter); // Добавляем телепортёр в список точек воздействия
-                }
-                else // Если телепортёр уже существует, обновляем его положение выхода
-                {
-                    teleporter.ExitX = e.X; // Перемещаем выход в точку клика
-                    teleporter.ExitY = e.Y;
+                    if (teleporter == null)
+                    {
+                        teleporter = new Teleporter(e.X, e.Y, 40);
+                        teleporter.X = e.X;
+                        teleporter.Y = e.Y;
+                        emitters[0].impactPoints.Add(teleporter);
+                    }
+                    else
+                    {
+                        teleporter.ExitX = e.X;
+                        teleporter.ExitY = e.Y;
+                    }
                 }
             }
 
-            // Принудительно вызываем перерисовку элемента управления для обновления отображения
-            picDisplay.Invalidate();
+            if (explosionEnabled && e.Button == MouseButtons.Left)
+            {
+                Eater newExplosion = new Eater(e.X, e.Y, 50);
+                emitter.impactPoints.Add(newExplosion);
+                picDisplay.Invalidate();
+            }
         }
+
+
 
         // включалка\выключалка телепортатора
         private void checkBoxTeleport_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxTeleport.Checked)
+            teleportEnabled = checkBoxTeleport.Checked;
+            if (!teleportEnabled && teleporter != null)
             {
-                // Включаем работу телепорта
-                teleportEnabled = true;
-            }
-            else
-            {
-                // Выключаем работу телепорта
-                teleportEnabled = false;
-
-                // Удаляем телепорт с формы
-                if (teleporter != null)
-                {
-                    // Удаляем телепорт из списка точек воздействия
-                    emitters[0].impactPoints.Remove(teleporter);
-                    // Обнуляем переменную teleporter
-                    teleporter = null;
-                    // Принудительно вызываем перерисовку элемента управления для обновления отображения
-                    picDisplay.Invalidate();
-                }
+                emitters[0].impactPoints.Remove(teleporter);
+                teleporter = null;
+                picDisplay.Invalidate();
             }
         }
+        // включалка\выключалка поедателя
+
+        private void checkBoxExplosion_CheckedChanged(object sender, EventArgs e)
+        {
+            explosionEnabled = checkBoxExplosion.Checked;
+            if (!explosionEnabled)
+            {
+                foreach (Emitter emitter in emitters)
+                {
+                    emitter.impactPoints.RemoveAll(point => point is Eater);
+                }
+                picDisplay.Invalidate();
+            }
+        }
+
+
+
     }
 }

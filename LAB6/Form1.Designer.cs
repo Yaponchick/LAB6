@@ -39,6 +39,7 @@
             this.lblGraviton2 = new System.Windows.Forms.Label();
             this.Text1 = new System.Windows.Forms.Label();
             this.checkBoxTeleport = new System.Windows.Forms.CheckBox();
+            this.checkBoxExplosion = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbGraviton)).BeginInit();
@@ -135,11 +136,23 @@
             this.checkBoxTeleport.UseVisualStyleBackColor = true;
             this.checkBoxTeleport.CheckedChanged += new System.EventHandler(this.checkBoxTeleport_CheckedChanged);
             // 
+            // checkBoxExplosion
+            // 
+            this.checkBoxExplosion.AutoSize = true;
+            this.checkBoxExplosion.Location = new System.Drawing.Point(884, 400);
+            this.checkBoxExplosion.Name = "checkBoxExplosion";
+            this.checkBoxExplosion.Size = new System.Drawing.Size(101, 20);
+            this.checkBoxExplosion.TabIndex = 9;
+            this.checkBoxExplosion.Text = "Поедатель";
+            this.checkBoxExplosion.UseVisualStyleBackColor = true;
+            this.checkBoxExplosion.CheckedChanged += new System.EventHandler(this.checkBoxExplosion_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1195, 477);
+            this.Controls.Add(this.checkBoxExplosion);
             this.Controls.Add(this.checkBoxTeleport);
             this.Controls.Add(this.Text1);
             this.Controls.Add(this.lblGraviton2);
@@ -172,6 +185,7 @@
         private System.Windows.Forms.Label lblGraviton2;
         private System.Windows.Forms.Label Text1;
         private System.Windows.Forms.CheckBox checkBoxTeleport;
+        private System.Windows.Forms.CheckBox checkBoxExplosion;
     }
 }
 

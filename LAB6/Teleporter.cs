@@ -20,12 +20,6 @@ public class Teleporter : IImpactPoint
     }
     private Random random = new Random();
 
-    private float GenerateRandomAngle()
-    {
-        return (float)(random.NextDouble() * 2 * Math.PI);
-    }
-
-
     public override void ImpactParticle(Particle particle)
     {
         float distanceToEntrance = (float)Math.Sqrt(Math.Pow(X - particle.X, 2) + Math.Pow(Y - particle.Y, 2));
