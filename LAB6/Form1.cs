@@ -21,6 +21,7 @@ namespace LAB6
 
         private bool teleportEnabled = false;
         private bool explosionEnabled = false;
+        private bool gravityEnabled = false;
         private Teleporter teleporter;
 
 
@@ -63,10 +64,6 @@ namespace LAB6
                 X = picDisplay.Width / 2 - 100,
                 Y = picDisplay.Height / 2,
             };
-
-            // привязываем поля к эмиттеру
-            emitter.impactPoints.Add(point1);
-            emitter.impactPoints.Add(point2);
         }
 
 
@@ -163,8 +160,6 @@ namespace LAB6
             }
         }
 
-
-
         // включалка\выключалка телепортатора
         private void checkBoxTeleport_CheckedChanged(object sender, EventArgs e)
         {
@@ -177,7 +172,6 @@ namespace LAB6
             }
         }
         // включалка\выключалка поедателя
-
         private void checkBoxExplosion_CheckedChanged(object sender, EventArgs e)
         {
             explosionEnabled = checkBoxExplosion.Checked;
@@ -191,6 +185,25 @@ namespace LAB6
             }
         }
 
+        // включалка\выключалка Gravity
+        private void checkBoxGravity_CheckedChanged(object sender, EventArgs e)
+        {
+            gravityEnabled = checkBoxGravity.Checked;
+
+            if (gravityEnabled)
+            {
+                // Включаем гравитацию, добавляя гравитоны к эмиттеру
+                emitter.impactPoints.Add(point1);
+                emitter.impactPoints.Add(point2);
+            }
+            else
+            {
+                // Выключаем гравитацию, удаляя гравитоны из эмиттера
+                emitter.impactPoints.Remove(point1);
+                emitter.impactPoints.Remove(point2);
+            }
+            picDisplay.Invalidate(); // Обновляем отображение
+        }
 
 
     }

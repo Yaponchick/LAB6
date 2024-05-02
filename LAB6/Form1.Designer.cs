@@ -40,6 +40,7 @@
             this.Text1 = new System.Windows.Forms.Label();
             this.checkBoxTeleport = new System.Windows.Forms.CheckBox();
             this.checkBoxExplosion = new System.Windows.Forms.CheckBox();
+            this.checkBoxGravity = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbGraviton)).BeginInit();
@@ -147,11 +148,23 @@
             this.checkBoxExplosion.UseVisualStyleBackColor = true;
             this.checkBoxExplosion.CheckedChanged += new System.EventHandler(this.checkBoxExplosion_CheckedChanged);
             // 
+            // checkBoxGravity
+            // 
+            this.checkBoxGravity.AutoSize = true;
+            this.checkBoxGravity.Location = new System.Drawing.Point(884, 427);
+            this.checkBoxGravity.Name = "checkBoxGravity";
+            this.checkBoxGravity.Size = new System.Drawing.Size(71, 20);
+            this.checkBoxGravity.TabIndex = 10;
+            this.checkBoxGravity.Text = "Gravity";
+            this.checkBoxGravity.UseVisualStyleBackColor = true;
+            this.checkBoxGravity.CheckedChanged += new System.EventHandler(this.checkBoxGravity_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1195, 477);
+            this.Controls.Add(this.checkBoxGravity);
             this.Controls.Add(this.checkBoxExplosion);
             this.Controls.Add(this.checkBoxTeleport);
             this.Controls.Add(this.Text1);
@@ -186,6 +199,7 @@
         private System.Windows.Forms.Label Text1;
         private System.Windows.Forms.CheckBox checkBoxTeleport;
         private System.Windows.Forms.CheckBox checkBoxExplosion;
+        private System.Windows.Forms.CheckBox checkBoxGravity;
     }
 }
 
