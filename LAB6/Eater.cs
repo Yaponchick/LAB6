@@ -17,7 +17,7 @@ namespace LAB6
             "АМ АМ АМ",
             "Почти наелся",
             "Ещё!",
-            "Почти все <3",
+            "Скоро лопну",
             "Наевся"
         };
 
@@ -75,7 +75,7 @@ namespace LAB6
             float labelY = Y - labelSize.Height / 2;
 
             // Отображаем надпись для текущего уровня собранных частиц
-            g.DrawString(labels[particlesCollected / 1000], new Font("Arial", 10), Brushes.White, labelX, labelY);
+            g.DrawString(labels[particlesCollected / 1000], new Font("Arial", 10), Brushes.Black, labelX, labelY);
 
             // Получаем размер текста для количества собранных частиц
             SizeF textSize = g.MeasureString($"Собрано: {particlesCollected}", new Font("Arial", 10));
@@ -85,7 +85,7 @@ namespace LAB6
             float textY = Y + Radius + 5;
 
             // Отображаем количество собранных частиц под кругом
-            g.DrawString($"Собрано: {particlesCollected}", new Font("Arial", 10), Brushes.White, textX, textY);
+            g.DrawString($"Собрано: {particlesCollected}", new Font("Arial", 10), Brushes.Black, textX, textY);
         }
 
         private Color GetCircleColor()

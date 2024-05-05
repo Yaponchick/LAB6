@@ -13,31 +13,30 @@ namespace LAB6
 {
     public partial class Form1 : Form
     {
-        List<Emitter> emitters = new List<Emitter>();
-        Emitter emitter; //поле для эмиттера
+        List<Emitter> emitters = new List<Emitter>(); // Список для хранения эмиттеров
+        Emitter emitter; // Поле для текущего эмиттера
 
-        GravityPoint point1; // добавил поле под первую точку
-        GravityPoint point2; // добавил поле под вторую точку
+        GravityPoint point1; // Поле для первой точки гравитации
+        GravityPoint point2; // Поле для второй точки гравитации
 
-        private bool teleportEnabled = false;
-        private bool explosionEnabled = false;
-        private bool gravityEnabled = false;
-        private Teleporter teleporter;
+        private bool teleportEnabled = false; // Флаг для включения/выключения телепортатора
+        private bool eaterEnabled = false; // Флаг для включения/выключения взрыва
+        private bool gravityEnabled = false; // Флаг для включения/выключения гравитации
+        private Teleporter teleporter; // Поле для телепортатора
 
-
+        // Конструктор формы
         public Form1()
         {
             InitializeComponent();
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
 
-            this.BackgroundImage = Image.FromFile(@"D:\Политехъ\2 курс\4 семестр\Технолоджи программирования\6 Лабораторная работа\LAB6\LAB6\fon2.jpg");
-            this.BackgroundImageLayout = ImageLayout.Stretch; // Растянуть изображение на всю форму
+            // Загрузка фона для picDisplay и его масштабирование
+            picDisplay.BackgroundImage = Image.FromFile(@"D:\Политехъ\2 курс\4 семестр\Технолоджи программирования\6 Лабораторная работа\LAB6\LAB6\cloud.jpg");
+            picDisplay.BackgroundImageLayout = ImageLayout.Stretch;
+            picDisplay.Refresh();
 
-            picDisplay.BackgroundImage = Image.FromFile(@"D:\Политехъ\2 курс\4 семестр\Технолоджи программирования\6 Лабораторная работа\LAB6\LAB6\fon2.jpg");
-            picDisplay.BackgroundImageLayout = ImageLayout.Stretch; // Настроить масштабирование изображения
-            picDisplay.Refresh(); // Обновить picDisplay для отображения изменений
-
-            this.emitter = new Emitter // создаю эмиттер и привязываю его к полю emitter
+            // Создание и настройка эмиттера
+            this.emitter = new Emitter
             {
                 Direction = 0,
                 Spreading = 10,
@@ -50,10 +49,9 @@ namespace LAB6
                 Y = picDisplay.Height / 2,
             };
 
+            emitters.Add(this.emitter); // Добавление эмиттера в список для отображения
 
-            emitters.Add(this.emitter); // все равно добавляю в список emitters, чтобы он рендерился и обновлялся
-
-            // привязываем гравитоны к полям
+            // Создание и настройка точек гравитации
             point1 = new GravityPoint
             {
                 X = picDisplay.Width / 2 + 100,
@@ -66,56 +64,56 @@ namespace LAB6
             };
         }
 
-
+        // Обработчик таймера для обновления состояния эмиттера и отрисовки
         private void timer1_Tick(object sender, EventArgs e)
         {
-            emitter.UpdateState(); // тут теперь обновляем эмиттер
+            emitter.UpdateState(); // Обновление состояния эмиттера
 
             using (var g = Graphics.FromImage(picDisplay.Image))
             {
-                g.Clear(Color.Transparent);
+                g.Clear(Color.Transparent); // Очистка изображения
 
-                /*                g.Clear(Color.Black);
-                */
-                emitter.Render(g); // а тут теперь рендерим через эмиттер
+                emitter.Render(g); // Отрисовка эмиттера
             }
 
-            picDisplay.Invalidate();
+            picDisplay.Invalidate(); // Обновление отображения
         }
 
+        // Обработчик движения мыши по picDisplay для привязки позиции эмиттера
         private void picDisplay_MouseMove(object sender, MouseEventArgs e)
         {
-          /*  foreach (var emitter in emitters)
+            if (checkBoxWand.Checked) // Проверка включен ли CheckBox
             {
-                emitter.MousePositionX = e.X;
-                emitter.MousePositionY = e.Y;
+                foreach (var emitter in emitters)
+                {
+                    emitter.MousePositionX = e.X;
+                    emitter.MousePositionY = e.Y;
+                }
             }
-
-            // а тут передаем положение мыши, в положение гравитона
-            point2.X = e.X;
-            point2.Y = e.Y;*/
         }
 
-
-
+        // Обработчик изменения значения ползунка направления эмиттера
         private void tbDirection_Scroll(object sender, EventArgs e)
         {
-            emitter.Direction = tbDirection.Value; // направлению эмиттера присваиваем значение ползунка 
-            lblDirection.Text = $"{tbDirection.Value}°"; // добавил вывод значения
+            emitter.Direction = tbDirection.Value; // Изменение направления эмиттера
+            lblDirection.Text = $"{tbDirection.Value}°"; // Обновление текста метки
         }
 
+        // Обработчик изменения значения ползунка силы гравитации для первой точки
         private void tbGraviton_Scroll(object sender, EventArgs e)
         {
-            point1.Power = tbGraviton.Value;
-            lblGraviton.Text = $"{tbGraviton.Value}°";
+            point1.Power = tbGraviton.Value; // Изменение силы гравитации
+            lblGraviton.Text = $"{tbGraviton.Value}°"; // Обновление текста метки
         }
 
+        // Обработчик изменения значения ползунка силы гравитации для второй точки
         private void tbGraviton2_Scroll(object sender, EventArgs e)
         {
-            point2.Power = tbGraviton2.Value;
-            lblGraviton2.Text = $"{tbGraviton2.Value}°";
+            point2.Power = tbGraviton2.Value; // Изменение силы гравитации
+            lblGraviton2.Text = $"{tbGraviton2.Value}°"; // Обновление текста метки
         }
 
+        // Обработчик клика мыши по picDisplay для добавления телепортатора или поедателя
         private void picDisplay_MouseClick(object sender, MouseEventArgs e)
         {
             if (teleportEnabled)
@@ -152,7 +150,7 @@ namespace LAB6
                 }
             }
 
-            if (explosionEnabled && e.Button == MouseButtons.Left)
+            if (eaterEnabled && e.Button == MouseButtons.Left)
             {
                 Eater newExplosion = new Eater(e.X, e.Y, 50);
                 emitter.impactPoints.Add(newExplosion);
@@ -160,7 +158,7 @@ namespace LAB6
             }
         }
 
-        // включалка\выключалка телепортатора
+        // Обработчик изменения состояния CheckBox для включения/выключения телепортатора
         private void checkBoxTeleport_CheckedChanged(object sender, EventArgs e)
         {
             teleportEnabled = checkBoxTeleport.Checked;
@@ -171,11 +169,12 @@ namespace LAB6
                 picDisplay.Invalidate();
             }
         }
-        // включалка\выключалка поедателя
+
+        // Обработчик изменения состояния CheckBox для включения/выключения поедателя
         private void checkBoxExplosion_CheckedChanged(object sender, EventArgs e)
         {
-            explosionEnabled = checkBoxExplosion.Checked;
-            if (!explosionEnabled)
+            eaterEnabled = checkBoxExplosion.Checked;
+            if (!eaterEnabled)
             {
                 foreach (Emitter emitter in emitters)
                 {
@@ -185,26 +184,46 @@ namespace LAB6
             }
         }
 
-        // включалка\выключалка Gravity
+        // Обработчик изменения состояния CheckBox для включения/выключения гравитации
         private void checkBoxGravity_CheckedChanged(object sender, EventArgs e)
         {
             gravityEnabled = checkBoxGravity.Checked;
 
             if (gravityEnabled)
             {
-                // Включаем гравитацию, добавляя гравитоны к эмиттеру
+                // Включение гравитации, добавление гравитационных точек к эмиттеру
                 emitter.impactPoints.Add(point1);
                 emitter.impactPoints.Add(point2);
             }
             else
             {
-                // Выключаем гравитацию, удаляя гравитоны из эмиттера
+                // Выключение гравитации, удаление гравитационных точек из эмиттера
                 emitter.impactPoints.Remove(point1);
                 emitter.impactPoints.Remove(point2);
             }
-            picDisplay.Invalidate(); // Обновляем отображение
+            picDisplay.Invalidate(); // Обновление отображения
         }
 
+        // Обработчик изменения состояния CheckBox для включения/выключения привязки позиции эмиттера к курсору
+        private void checkBoxWand_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxWand.Checked) // Если CheckBox включен
+            {
+                // Включение функциональности привязки позиции эмиттера к курсору
+                picDisplay.MouseMove += picDisplay_MouseMove;
+            }
+            else
+            {
+                // Выключение функциональности привязки позиции эмиттера к курсору
+                picDisplay.MouseMove -= picDisplay_MouseMove;
 
+                // Сброс привязки позиции мыши к эмиттеру при выключенном CheckBox
+                foreach (var emitter in emitters)
+                {
+                    emitter.MousePositionX = 0;
+                    emitter.MousePositionY = 0;
+                }
+            }
+        }
     }
 }

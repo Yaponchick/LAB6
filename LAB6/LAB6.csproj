@@ -90,7 +90,7 @@
   <ItemGroup>
     <Content Include="circle.png" />
     <Content Include="circleRGB.png" />
-    <Content Include="sol.png" />
+    <Content Include="cloud.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

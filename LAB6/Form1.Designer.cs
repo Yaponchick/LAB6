@@ -41,6 +41,7 @@
             this.checkBoxTeleport = new System.Windows.Forms.CheckBox();
             this.checkBoxExplosion = new System.Windows.Forms.CheckBox();
             this.checkBoxGravity = new System.Windows.Forms.CheckBox();
+            this.checkBoxWand = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbGraviton)).BeginInit();
@@ -83,25 +84,25 @@
             // 
             // tbGraviton
             // 
-            this.tbGraviton.Location = new System.Drawing.Point(244, 374);
+            this.tbGraviton.Location = new System.Drawing.Point(511, 418);
             this.tbGraviton.Maximum = 100;
             this.tbGraviton.Name = "tbGraviton";
-            this.tbGraviton.Size = new System.Drawing.Size(162, 56);
+            this.tbGraviton.Size = new System.Drawing.Size(106, 56);
             this.tbGraviton.TabIndex = 3;
             this.tbGraviton.Scroll += new System.EventHandler(this.tbGraviton_Scroll);
             // 
             // lblGraviton
             // 
             this.lblGraviton.AutoSize = true;
-            this.lblGraviton.Location = new System.Drawing.Point(412, 388);
+            this.lblGraviton.Location = new System.Drawing.Point(635, 426);
             this.lblGraviton.Name = "lblGraviton";
             this.lblGraviton.Size = new System.Drawing.Size(72, 16);
             this.lblGraviton.TabIndex = 4;
-            this.lblGraviton.Text = "Счетчик 2";
+            this.lblGraviton.Text = "Счетчик 3";
             // 
             // tbGraviton2
             // 
-            this.tbGraviton2.Location = new System.Drawing.Point(620, 374);
+            this.tbGraviton2.Location = new System.Drawing.Point(513, 358);
             this.tbGraviton2.Maximum = 100;
             this.tbGraviton2.Name = "tbGraviton2";
             this.tbGraviton2.Size = new System.Drawing.Size(104, 56);
@@ -111,11 +112,11 @@
             // lblGraviton2
             // 
             this.lblGraviton2.AutoSize = true;
-            this.lblGraviton2.Location = new System.Drawing.Point(730, 388);
+            this.lblGraviton2.Location = new System.Drawing.Point(635, 374);
             this.lblGraviton2.Name = "lblGraviton2";
             this.lblGraviton2.Size = new System.Drawing.Size(72, 16);
             this.lblGraviton2.TabIndex = 6;
-            this.lblGraviton2.Text = "Счетчик 3";
+            this.lblGraviton2.Text = "Счетчик 2";
             // 
             // Text1
             // 
@@ -151,7 +152,7 @@
             // checkBoxGravity
             // 
             this.checkBoxGravity.AutoSize = true;
-            this.checkBoxGravity.Location = new System.Drawing.Point(884, 427);
+            this.checkBoxGravity.Location = new System.Drawing.Point(523, 394);
             this.checkBoxGravity.Name = "checkBoxGravity";
             this.checkBoxGravity.Size = new System.Drawing.Size(71, 20);
             this.checkBoxGravity.TabIndex = 10;
@@ -159,11 +160,23 @@
             this.checkBoxGravity.UseVisualStyleBackColor = true;
             this.checkBoxGravity.CheckedChanged += new System.EventHandler(this.checkBoxGravity_CheckedChanged);
             // 
+            // checkBoxWand
+            // 
+            this.checkBoxWand.AutoSize = true;
+            this.checkBoxWand.Location = new System.Drawing.Point(884, 426);
+            this.checkBoxWand.Name = "checkBoxWand";
+            this.checkBoxWand.Size = new System.Drawing.Size(160, 20);
+            this.checkBoxWand.TabIndex = 11;
+            this.checkBoxWand.Text = "Волшебная палочка";
+            this.checkBoxWand.UseVisualStyleBackColor = true;
+            this.checkBoxWand.CheckedChanged += new System.EventHandler(this.checkBoxWand_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1195, 477);
+            this.ClientSize = new System.Drawing.Size(1195, 466);
+            this.Controls.Add(this.checkBoxWand);
             this.Controls.Add(this.checkBoxGravity);
             this.Controls.Add(this.checkBoxExplosion);
             this.Controls.Add(this.checkBoxTeleport);
@@ -176,7 +189,7 @@
             this.Controls.Add(this.tbDirection);
             this.Controls.Add(this.picDisplay);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Частицы";
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbGraviton)).EndInit();
@@ -200,6 +213,7 @@
         private System.Windows.Forms.CheckBox checkBoxTeleport;
         private System.Windows.Forms.CheckBox checkBoxExplosion;
         private System.Windows.Forms.CheckBox checkBoxGravity;
+        private System.Windows.Forms.CheckBox checkBoxWand;
     }
 }
 

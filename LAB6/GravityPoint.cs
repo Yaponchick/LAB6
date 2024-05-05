@@ -31,7 +31,7 @@ namespace LAB6
         {
             // буду рисовать окружность с диаметром равным Power
             g.DrawEllipse(
-                   new Pen(Color.Red),
+                   new Pen(Color.Blue),
                    X - Power / 2,
                    Y - Power / 2,
                    Power,
@@ -51,7 +51,7 @@ namespace LAB6
 
             // рисуем подложнку под текст
             g.FillRectangle(
-                new SolidBrush(Color.Red),
+                new SolidBrush(Color.Blue),
                 X - size.Width / 2, // так как я выравнивал текст по центру то подложка должна быть центрирована относительно X,Y
                 Y - size.Height / 2,
                 size.Width,
