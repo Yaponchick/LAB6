@@ -16,9 +16,9 @@ namespace LAB6
         public float SpeedX; // скорость перемещения по оси X
         public float SpeedY; // скорость перемещения по оси Y
         public float Life; // запас здоровья частицы
-
-        public bool FromTeleporter { get; set; }
         
+        public bool FromTeleporter { get; set; } // хранит информацию о том, была ли частица создана из телепортатора
+
         // генератор случайных чисел
         public static Random rand = new Random();
 
@@ -36,11 +36,19 @@ namespace LAB6
             Radius = 2 + rand.Next(10);
             Life = 20 + rand.Next(100);
         }
+        // Предназначен для отрисовки частицы на графическом контексте
         public virtual void Draw(Graphics g)
         {
             /* ... */
         }
     }
+
+
+
+
+
+
+
 
     // новый класс для цветных частиц
     public class ParticleColorful : Particle
@@ -60,7 +68,7 @@ namespace LAB6
             );
         }
 
-        // Отрисовка
+        // Отрисовка цветной частицы
         public override void Draw(Graphics g)
         {
             float k = Math.Min(1f, Life / 100);

@@ -5,22 +5,26 @@ using System.Drawing;
 
 public class Teleporter : IImpactPoint
 {
-    public float X { get; set; } 
-    public float Y { get; set; } 
-    public float ExitX { get; set; } 
-    public float ExitY { get; set; }
-    public float Radius { get; set; }
+    public float X { get; set; } // Координата X точки входа телепорта
+    public float Y { get; set; } // Координата Y точки входа телепорта
+    public float ExitX { get; set; } // Координата X точки выхода телепорта
+    public float ExitY { get; set; } // Координата Y точки выхода телепорта
+    public float Radius { get; set; } // Радиус телепорта
 
+    private Random random = new Random(); // Генерация случайных чисел
+
+    // Конструктор класса Teleporter
     public Teleporter(float x, float y, float radius)
     {
         X = x;
         Y = y;
         Radius = radius;
     }
-    private Random random = new Random();
 
+    // Метод воздействия на частицу
     public override void ImpactParticle(Particle particle)
     {
+        // Расчет расстояния от частицы до точки входа телепорта
         float distanceToEntrance = (float)Math.Sqrt(Math.Pow(X - particle.X, 2) + Math.Pow(Y - particle.Y, 2));
         particle.FromTeleporter = true;
 
@@ -42,6 +46,7 @@ public class Teleporter : IImpactPoint
         }
     }
 
+    // Метод отрисовки телепорта
     public override void Render(Graphics g)
     {
         // Загрузите изображения для телепортов

@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 
 namespace LAB6
 {
+    // влияет на поведение частиц
     public abstract class IImpactPoint
     {
-        public float X; // ну точка же, вот и две координаты
+        public float X; 
         public float Y;
-
 
         // абстрактный метод с помощью которого будем изменять состояние частиц
         // например притягивать
         public abstract void ImpactParticle(Particle particle);
+        
 
         // базовый класс для отрисовки точечки
         public virtual void Render(Graphics g)

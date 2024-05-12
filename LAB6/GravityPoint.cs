@@ -7,26 +7,28 @@ using System.Threading.Tasks;
 
 namespace LAB6
 {
+    // Класс представляет точку притяжения силы гравитации
     public class GravityPoint : IImpactPoint
     {
         public int Power = 100; // сила притяжения
 
-        // а сюда по сути скопировали с минимальными правками то что было в UpdateState
+        // Метод рассчитывает и применяет притяжение частицы к точке гравитации
         public override void ImpactParticle(Particle particle)
         {
-            float gX = X - particle.X;
-            float gY = Y - particle.Y;
+            float gX = X - particle.X; // используется для вычисления расстояния между центром точки гравитации и центром частицы
+            float gY = Y - particle.Y; // используется для вычисления расстояния между центром точки гравитации и центром частицы
 
             double r = Math.Sqrt(gX * gX + gY * gY); // считаем расстояние от центра точки до центра частицы
             if (r + particle.Radius < Power / 2) // если частица оказалось внутри окружности
             {
                 // то притягиваем ее
-                float r2 = (float)Math.Max(100, gX * gX + gY * gY);
+                float r2 = (float)Math.Max(100, gX * gX + gY * gY); // используется для вычисления силы притяжения
                 particle.SpeedX += gX * Power / r2;
                 particle.SpeedY += gY * Power / r2;
             }
         }
 
+        // Метод отрисовывает точку гравитации на графическом контексте
         public override void Render(Graphics g)
         {
             // буду рисовать окружность с диаметром равным Power

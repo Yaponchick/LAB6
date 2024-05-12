@@ -42,10 +42,22 @@
             this.checkBoxExplosion = new System.Windows.Forms.CheckBox();
             this.checkBoxGravity = new System.Windows.Forms.CheckBox();
             this.checkBoxWand = new System.Windows.Forms.CheckBox();
+            this.tbSpreading = new System.Windows.Forms.TrackBar();
+            this.tbSpeed = new System.Windows.Forms.TrackBar();
+            this.tbParticlesPerTick = new System.Windows.Forms.TrackBar();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblSpreading = new System.Windows.Forms.Label();
+            this.lblSpeed = new System.Windows.Forms.Label();
+            this.lblParticlesPerTick = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbGraviton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbGraviton2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbSpreading)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbParticlesPerTick)).BeginInit();
             this.SuspendLayout();
             // 
             // picDisplay
@@ -96,9 +108,9 @@
             this.lblGraviton.AutoSize = true;
             this.lblGraviton.Location = new System.Drawing.Point(635, 426);
             this.lblGraviton.Name = "lblGraviton";
-            this.lblGraviton.Size = new System.Drawing.Size(72, 16);
+            this.lblGraviton.Size = new System.Drawing.Size(62, 16);
             this.lblGraviton.TabIndex = 4;
-            this.lblGraviton.Text = "Счетчик 3";
+            this.lblGraviton.Text = "Счетчик";
             // 
             // tbGraviton2
             // 
@@ -114,9 +126,9 @@
             this.lblGraviton2.AutoSize = true;
             this.lblGraviton2.Location = new System.Drawing.Point(635, 374);
             this.lblGraviton2.Name = "lblGraviton2";
-            this.lblGraviton2.Size = new System.Drawing.Size(72, 16);
+            this.lblGraviton2.Size = new System.Drawing.Size(62, 16);
             this.lblGraviton2.TabIndex = 6;
-            this.lblGraviton2.Text = "Счетчик 2";
+            this.lblGraviton2.Text = "Счетчик";
             // 
             // Text1
             // 
@@ -171,11 +183,98 @@
             this.checkBoxWand.UseVisualStyleBackColor = true;
             this.checkBoxWand.CheckedChanged += new System.EventHandler(this.checkBoxWand_CheckedChanged);
             // 
+            // tbSpreading
+            // 
+            this.tbSpreading.Location = new System.Drawing.Point(12, 436);
+            this.tbSpreading.Name = "tbSpreading";
+            this.tbSpreading.Size = new System.Drawing.Size(148, 56);
+            this.tbSpreading.TabIndex = 12;
+            this.tbSpreading.Scroll += new System.EventHandler(this.tbSpreading_Scroll);
+            // 
+            // tbSpeed
+            // 
+            this.tbSpeed.Location = new System.Drawing.Point(266, 364);
+            this.tbSpeed.Name = "tbSpeed";
+            this.tbSpeed.Size = new System.Drawing.Size(148, 56);
+            this.tbSpeed.TabIndex = 13;
+            this.tbSpeed.Scroll += new System.EventHandler(this.tbSpeed_Scroll);
+            // 
+            // tbParticlesPerTick
+            // 
+            this.tbParticlesPerTick.Location = new System.Drawing.Point(266, 426);
+            this.tbParticlesPerTick.Name = "tbParticlesPerTick";
+            this.tbParticlesPerTick.Size = new System.Drawing.Size(148, 56);
+            this.tbParticlesPerTick.TabIndex = 14;
+            this.tbParticlesPerTick.Scroll += new System.EventHandler(this.tbParticlesPerTick_Scroll);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(55, 418);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(63, 16);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "Разброс";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(313, 355);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(68, 16);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Скорость";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(280, 407);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(134, 16);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "Количество частиц";
+            // 
+            // lblSpreading
+            // 
+            this.lblSpreading.AutoSize = true;
+            this.lblSpreading.Location = new System.Drawing.Point(176, 436);
+            this.lblSpreading.Name = "lblSpreading";
+            this.lblSpreading.Size = new System.Drawing.Size(62, 16);
+            this.lblSpreading.TabIndex = 18;
+            this.lblSpreading.Text = "Счетчик";
+            // 
+            // lblSpeed
+            // 
+            this.lblSpeed.AutoSize = true;
+            this.lblSpeed.Location = new System.Drawing.Point(429, 374);
+            this.lblSpeed.Name = "lblSpeed";
+            this.lblSpeed.Size = new System.Drawing.Size(62, 16);
+            this.lblSpeed.TabIndex = 19;
+            this.lblSpeed.Text = "Счетчик";
+            // 
+            // lblParticlesPerTick
+            // 
+            this.lblParticlesPerTick.AutoSize = true;
+            this.lblParticlesPerTick.Location = new System.Drawing.Point(429, 426);
+            this.lblParticlesPerTick.Name = "lblParticlesPerTick";
+            this.lblParticlesPerTick.Size = new System.Drawing.Size(62, 16);
+            this.lblParticlesPerTick.TabIndex = 20;
+            this.lblParticlesPerTick.Text = "Счетчик";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1195, 466);
+            this.ClientSize = new System.Drawing.Size(1195, 489);
+            this.Controls.Add(this.lblParticlesPerTick);
+            this.Controls.Add(this.lblSpeed);
+            this.Controls.Add(this.lblSpreading);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.tbParticlesPerTick);
+            this.Controls.Add(this.tbSpeed);
+            this.Controls.Add(this.tbSpreading);
             this.Controls.Add(this.checkBoxWand);
             this.Controls.Add(this.checkBoxGravity);
             this.Controls.Add(this.checkBoxExplosion);
@@ -194,6 +293,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbGraviton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbGraviton2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbSpreading)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbParticlesPerTick)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -214,6 +316,15 @@
         private System.Windows.Forms.CheckBox checkBoxExplosion;
         private System.Windows.Forms.CheckBox checkBoxGravity;
         private System.Windows.Forms.CheckBox checkBoxWand;
+        private System.Windows.Forms.TrackBar tbSpreading;
+        private System.Windows.Forms.TrackBar tbSpeed;
+        private System.Windows.Forms.TrackBar tbParticlesPerTick;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblSpreading;
+        private System.Windows.Forms.Label lblSpeed;
+        private System.Windows.Forms.Label lblParticlesPerTick;
     }
 }
 

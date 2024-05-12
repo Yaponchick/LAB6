@@ -20,7 +20,7 @@ namespace LAB6
         GravityPoint point2; // Поле для второй точки гравитации
 
         private bool teleportEnabled = false; // Флаг для включения/выключения телепортатора
-        private bool eaterEnabled = false; // Флаг для включения/выключения взрыва
+        private bool eaterEnabled = false; // Флаг для включения/выключения поедателя
         private bool gravityEnabled = false; // Флаг для включения/выключения гравитации
         private Teleporter teleporter; // Поле для телепортатора
 
@@ -38,15 +38,15 @@ namespace LAB6
             // Создание и настройка эмиттера
             this.emitter = new Emitter
             {
-                Direction = 0,
-                Spreading = 10,
-                SpeedMin = 10,
-                SpeedMax = 10,
-                ColorFrom = Color.Gold,
-                ColorTo = Color.FromArgb(0, Color.Red),
-                ParticlesPerTick = 10,
-                X = picDisplay.Width / 2,
-                Y = picDisplay.Height / 2,
+                Direction = 0, // Начальное направление движения частиц (в градусах)
+                Spreading = 10, // Разброс направления движения частиц
+                SpeedMin = 10, // Минимальная скорость частиц
+                SpeedMax = 10, // Максимальная скорость частиц
+                ColorFrom = Color.Gold, // Начальный цвет частиц
+                ColorTo = Color.FromArgb(0, Color.Red), // Конечный цвет частиц
+                ParticlesPerTick = 10, // Количество частиц, создаваемых за один такт времени
+                X = picDisplay.Width / 2, // Начальная координата X эмиттера
+                Y = picDisplay.Height / 2, // Начальная координата Y эмиттера
             };
 
             emitters.Add(this.emitter); // Добавление эмиттера в список для отображения
@@ -220,10 +220,32 @@ namespace LAB6
                 // Сброс привязки позиции мыши к эмиттеру при выключенном CheckBox
                 foreach (var emitter in emitters)
                 {
-                    emitter.MousePositionX = 0;
+                    emitter.MousePositionX = 10000;
                     emitter.MousePositionY = 0;
                 }
             }
+        }
+
+        // Обработчик изменения разброса частиц
+        private void tbSpreading_Scroll(object sender, EventArgs e)
+        {
+            emitter.Spreading = tbSpreading.Value*20;
+            lblSpreading.Text = $"{tbSpreading.Value}"; // Обновление текста метки
+        }
+
+        // Обработчик изменения скорости частиц
+        private void tbSpeed_Scroll(object sender, EventArgs e)
+        {
+            emitter.SpeedMin = tbSpeed.Value*2; // Установка минимальной скорости частиц
+            emitter.SpeedMax = tbSpeed.Value*2;
+            lblSpeed.Text = $"{tbSpeed.Value}";
+        }
+
+        // Обработчик изменения количества частиц
+        private void tbParticlesPerTick_Scroll(object sender, EventArgs e)
+        {
+            emitter.ParticlesPerTick = tbParticlesPerTick.Value*5;
+            lblParticlesPerTick.Text = $"{tbParticlesPerTick.Value}";
         }
     }
 }

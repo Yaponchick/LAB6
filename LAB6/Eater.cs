@@ -3,11 +3,12 @@ using System.Drawing;
 
 namespace LAB6
 {
+    // Класс, представляющий точку, которая поглощает частицы
     public class Eater : IImpactPoint
     {
-        public float X { get; set; }
-        public float Y { get; set; }
-        public float Radius { get; set; }
+        public float X { get; set; } // Координата X круга
+        public float Y { get; set; } // Координата Y круга
+        public float Radius { get; set; } // Радиус круга
 
         private int particlesCollected = 0; // Счетчик собранных частиц
 
@@ -29,6 +30,7 @@ namespace LAB6
             Radius = radius;
         }
 
+        // Метод воздействия на частицу
         public override void ImpactParticle(Particle particle)
         {
             if (particlesCollected >= 4000)
@@ -46,6 +48,7 @@ namespace LAB6
             }
         }
 
+        // Метод отрисовки точки
         public override void Render(Graphics g)
         {
             // Получаем текущий цвет для круга
@@ -88,6 +91,7 @@ namespace LAB6
             g.DrawString($"Собрано: {particlesCollected}", new Font("Arial", 10), Brushes.Black, textX, textY);
         }
 
+        // Метод для определения цвета круга в зависимости от количества собранных частиц
         private Color GetCircleColor()
         {
             if (particlesCollected < 1000)
@@ -97,18 +101,18 @@ namespace LAB6
             }
             else if (particlesCollected < 2000)
             {
-                int alpha = (particlesCollected - 1000) / 4;
-                return Color.FromArgb(alpha, Color.Yellow);
+                int alpha1 = (particlesCollected - 1000) / 4;
+                return Color.FromArgb(alpha1, Color.Yellow);
             }
             else if (particlesCollected < 3000)
             {
-                int alpha = (particlesCollected - 2000) / 4;
-                return Color.FromArgb(alpha, Color.Orange);
+                int alpha2 = (particlesCollected - 2000) / 4;
+                return Color.FromArgb(alpha2, Color.Orange);
             }
             else if (particlesCollected < 4000)
             {
-                int alpha = (particlesCollected - 3000) / 4;
-                return Color.FromArgb(alpha, Color.Red);
+                int alpha3 = (particlesCollected - 3000) / 4;
+                return Color.FromArgb(alpha3, Color.Red);
             }
             else
             {

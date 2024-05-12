@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LAB6
 {
-    public class TopEmitter : Emitter
+/*    public class TopEmitter : Emitter
     {
         public int Width; // длина экрана
 
@@ -21,5 +21,5 @@ namespace LAB6
             particle.SpeedY = 1; // падаем вниз по умолчанию
             particle.SpeedX = Particle.rand.Next(-2, 2); // разброс влево и вправа у частиц 
         }
-    }
+    }*/
 }
