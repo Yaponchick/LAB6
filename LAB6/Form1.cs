@@ -201,6 +201,8 @@ namespace LAB6
                 emitter.impactPoints.Remove(point1);
                 emitter.impactPoints.Remove(point2);
             }
+            tbGraviton.Enabled = checkBoxGravity.Checked;
+            tbGraviton2.Enabled = checkBoxGravity.Checked;
             picDisplay.Invalidate(); // Обновление отображения
         }
 

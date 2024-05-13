@@ -96,6 +96,8 @@
             // 
             // tbGraviton
             // 
+            this.tbGraviton.AllowDrop = true;
+            this.tbGraviton.Enabled = false;
             this.tbGraviton.Location = new System.Drawing.Point(511, 418);
             this.tbGraviton.Maximum = 100;
             this.tbGraviton.Name = "tbGraviton";
@@ -114,6 +116,7 @@
             // 
             // tbGraviton2
             // 
+            this.tbGraviton2.Enabled = false;
             this.tbGraviton2.Location = new System.Drawing.Point(513, 358);
             this.tbGraviton2.Maximum = 100;
             this.tbGraviton2.Name = "tbGraviton2";

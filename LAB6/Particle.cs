@@ -16,8 +16,8 @@ namespace LAB6
         public float SpeedX; // скорость перемещения по оси X
         public float SpeedY; // скорость перемещения по оси Y
         public float Life; // запас здоровья частицы
-        
-        public bool FromTeleporter { get; set; } // хранит информацию о том, была ли частица создана из телепортатора
+
+        public bool FromTeleporter; // хранит информацию о том, была ли частица создана из телепортатора
 
         // генератор случайных чисел
         public static Random rand = new Random();

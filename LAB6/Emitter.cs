@@ -112,7 +112,7 @@ namespace LAB6
             {
                 particle.Draw(g);
             }
-            // рисую точки притяжения красными кружочками
+            // точки притяжения
             foreach (var point in impactPoints)
             {
                 point.Render(g);

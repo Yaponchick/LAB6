@@ -5,11 +5,11 @@ using System.Drawing;
 
 public class Teleporter : IImpactPoint
 {
-    public float X { get; set; } // Координата X точки входа телепорта
-    public float Y { get; set; } // Координата Y точки входа телепорта
-    public float ExitX { get; set; } // Координата X точки выхода телепорта
-    public float ExitY { get; set; } // Координата Y точки выхода телепорта
-    public float Radius { get; set; } // Радиус телепорта
+    public float X; // Координата X точки входа телепорта
+    public float Y; // Координата Y точки входа телепорта
+    public float ExitX; // Координата X точки выхода телепорта
+    public float ExitY; // Координата Y точки выхода телепорта
+    public float Radius;  // Радиус телепорта
 
     private Random random = new Random(); // Генерация случайных чисел
 
