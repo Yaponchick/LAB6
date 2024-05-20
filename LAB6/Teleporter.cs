@@ -21,7 +21,7 @@ public class Teleporter : IImpactPoint
         Radius = radius;
     }
 
-    // Метод воздействия на частицу
+    // Воздействуем на частицу
     public override void ImpactParticle(Particle particle)
     {
         // Расчет расстояния от частицы до точки входа телепорта
@@ -49,15 +49,14 @@ public class Teleporter : IImpactPoint
     // Метод отрисовки телепорта
     public override void Render(Graphics g)
     {
-        // Загрузите изображения для телепортов
         Bitmap teleporterImage = new Bitmap(@"D:\Политехъ\2 курс\4 семестр\Технолоджи программирования\6 Лабораторная работа\LAB6\LAB6\circle.png");
         Bitmap exitImage = new Bitmap(@"D:\Политехъ\2 курс\4 семестр\Технолоджи программирования\6 Лабораторная работа\LAB6\LAB6\circleRGB.png");
 
-        // Отобразите изображения на экране вместо кругов
+        // Отображение изображения на экране вместо кругов
         g.DrawImage(teleporterImage, X - Radius, Y - Radius, 2 * Radius, 2 * Radius);
         g.DrawImage(exitImage, ExitX - Radius, ExitY - Radius, 2 * Radius, 2 * Radius);
 
-        // Освободите ресурсы изображений после использования
+        // освобождение ресурсов отображения
         teleporterImage.Dispose();
         exitImage.Dispose();
     }

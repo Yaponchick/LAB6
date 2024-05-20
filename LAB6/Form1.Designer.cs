@@ -33,14 +33,9 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tbDirection = new System.Windows.Forms.TrackBar();
             this.lblDirection = new System.Windows.Forms.Label();
-            this.tbGraviton = new System.Windows.Forms.TrackBar();
-            this.lblGraviton = new System.Windows.Forms.Label();
-            this.tbGraviton2 = new System.Windows.Forms.TrackBar();
-            this.lblGraviton2 = new System.Windows.Forms.Label();
             this.Text1 = new System.Windows.Forms.Label();
             this.checkBoxTeleport = new System.Windows.Forms.CheckBox();
             this.checkBoxExplosion = new System.Windows.Forms.CheckBox();
-            this.checkBoxGravity = new System.Windows.Forms.CheckBox();
             this.checkBoxWand = new System.Windows.Forms.CheckBox();
             this.tbSpreading = new System.Windows.Forms.TrackBar();
             this.tbSpeed = new System.Windows.Forms.TrackBar();
@@ -53,8 +48,6 @@
             this.lblParticlesPerTick = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbGraviton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbGraviton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbSpreading)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbParticlesPerTick)).BeginInit();
@@ -94,45 +87,6 @@
             this.lblDirection.TabIndex = 2;
             this.lblDirection.Text = "Счетчик";
             // 
-            // tbGraviton
-            // 
-            this.tbGraviton.AllowDrop = true;
-            this.tbGraviton.Enabled = false;
-            this.tbGraviton.Location = new System.Drawing.Point(511, 418);
-            this.tbGraviton.Maximum = 100;
-            this.tbGraviton.Name = "tbGraviton";
-            this.tbGraviton.Size = new System.Drawing.Size(106, 56);
-            this.tbGraviton.TabIndex = 3;
-            this.tbGraviton.Scroll += new System.EventHandler(this.tbGraviton_Scroll);
-            // 
-            // lblGraviton
-            // 
-            this.lblGraviton.AutoSize = true;
-            this.lblGraviton.Location = new System.Drawing.Point(635, 426);
-            this.lblGraviton.Name = "lblGraviton";
-            this.lblGraviton.Size = new System.Drawing.Size(62, 16);
-            this.lblGraviton.TabIndex = 4;
-            this.lblGraviton.Text = "Счетчик";
-            // 
-            // tbGraviton2
-            // 
-            this.tbGraviton2.Enabled = false;
-            this.tbGraviton2.Location = new System.Drawing.Point(513, 358);
-            this.tbGraviton2.Maximum = 100;
-            this.tbGraviton2.Name = "tbGraviton2";
-            this.tbGraviton2.Size = new System.Drawing.Size(104, 56);
-            this.tbGraviton2.TabIndex = 5;
-            this.tbGraviton2.Scroll += new System.EventHandler(this.tbGraviton2_Scroll);
-            // 
-            // lblGraviton2
-            // 
-            this.lblGraviton2.AutoSize = true;
-            this.lblGraviton2.Location = new System.Drawing.Point(635, 374);
-            this.lblGraviton2.Name = "lblGraviton2";
-            this.lblGraviton2.Size = new System.Drawing.Size(62, 16);
-            this.lblGraviton2.TabIndex = 6;
-            this.lblGraviton2.Text = "Счетчик";
-            // 
             // Text1
             // 
             this.Text1.AutoSize = true;
@@ -163,17 +117,6 @@
             this.checkBoxExplosion.Text = "Поедатель";
             this.checkBoxExplosion.UseVisualStyleBackColor = true;
             this.checkBoxExplosion.CheckedChanged += new System.EventHandler(this.checkBoxExplosion_CheckedChanged);
-            // 
-            // checkBoxGravity
-            // 
-            this.checkBoxGravity.AutoSize = true;
-            this.checkBoxGravity.Location = new System.Drawing.Point(523, 394);
-            this.checkBoxGravity.Name = "checkBoxGravity";
-            this.checkBoxGravity.Size = new System.Drawing.Size(71, 20);
-            this.checkBoxGravity.TabIndex = 10;
-            this.checkBoxGravity.Text = "Gravity";
-            this.checkBoxGravity.UseVisualStyleBackColor = true;
-            this.checkBoxGravity.CheckedChanged += new System.EventHandler(this.checkBoxGravity_CheckedChanged);
             // 
             // checkBoxWand
             // 
@@ -279,14 +222,9 @@
             this.Controls.Add(this.tbSpeed);
             this.Controls.Add(this.tbSpreading);
             this.Controls.Add(this.checkBoxWand);
-            this.Controls.Add(this.checkBoxGravity);
             this.Controls.Add(this.checkBoxExplosion);
             this.Controls.Add(this.checkBoxTeleport);
             this.Controls.Add(this.Text1);
-            this.Controls.Add(this.lblGraviton2);
-            this.Controls.Add(this.tbGraviton2);
-            this.Controls.Add(this.lblGraviton);
-            this.Controls.Add(this.tbGraviton);
             this.Controls.Add(this.lblDirection);
             this.Controls.Add(this.tbDirection);
             this.Controls.Add(this.picDisplay);
@@ -294,8 +232,6 @@
             this.Text = "Частицы";
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbGraviton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbGraviton2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbSpreading)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbParticlesPerTick)).EndInit();
@@ -310,14 +246,9 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TrackBar tbDirection;
         private System.Windows.Forms.Label lblDirection;
-        private System.Windows.Forms.TrackBar tbGraviton;
-        private System.Windows.Forms.Label lblGraviton;
-        private System.Windows.Forms.TrackBar tbGraviton2;
-        private System.Windows.Forms.Label lblGraviton2;
         private System.Windows.Forms.Label Text1;
         private System.Windows.Forms.CheckBox checkBoxTeleport;
         private System.Windows.Forms.CheckBox checkBoxExplosion;
-        private System.Windows.Forms.CheckBox checkBoxGravity;
         private System.Windows.Forms.CheckBox checkBoxWand;
         private System.Windows.Forms.TrackBar tbSpreading;
         private System.Windows.Forms.TrackBar tbSpeed;

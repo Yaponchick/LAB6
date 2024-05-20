@@ -6,9 +6,9 @@ namespace LAB6
     // Класс, представляющий точку, которая поглощает частицы
     public class Eater : IImpactPoint
     {
-        public float X { get; set; } // Координата X круга
-        public float Y { get; set; } // Координата Y круга
-        public float Radius { get; set; } // Радиус круга
+        public float X; // Координата X круга
+        public float Y; // Координата Y круга
+        public float Radius; // Радиус круга
 
         private int particlesCollected = 0; // Счетчик собранных частиц
 
@@ -43,7 +43,7 @@ namespace LAB6
             if (distanceToCenter <= Radius)
             {
                 particlesCollected++;
-                // Установить частицу за пределы экрана, чтобы она умерла
+
                 particle.Life = 0;
             }
         }
@@ -57,7 +57,6 @@ namespace LAB6
             // Создаем цвет для обводки без прозрачности
             Color outlineColor = Color.FromArgb(255, circleColor);
 
-            // Создаем кисть для круга
             using (Brush brush = new SolidBrush(circleColor))
             {
                 // Рисуем круг с изменяемым цветом

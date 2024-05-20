@@ -16,12 +16,8 @@ namespace LAB6
         List<Emitter> emitters = new List<Emitter>(); // Список для хранения эмиттеров
         Emitter emitter; // Поле для текущего эмиттера
 
-        GravityPoint point1; // Поле для первой точки гравитации
-        GravityPoint point2; // Поле для второй точки гравитации
-
         private bool teleportEnabled = false; // Флаг для включения/выключения телепортатора
         private bool eaterEnabled = false; // Флаг для включения/выключения поедателя
-        private bool gravityEnabled = false; // Флаг для включения/выключения гравитации
         private Teleporter teleporter; // Поле для телепортатора
 
         // Конструктор формы
@@ -50,18 +46,6 @@ namespace LAB6
             };
 
             emitters.Add(this.emitter); // Добавление эмиттера в список для отображения
-
-            // Создание и настройка точек гравитации
-            point1 = new GravityPoint
-            {
-                X = picDisplay.Width / 2 + 100,
-                Y = picDisplay.Height / 2,
-            };
-            point2 = new GravityPoint
-            {
-                X = picDisplay.Width / 2 - 100,
-                Y = picDisplay.Height / 2,
-            };
         }
 
         // Обработчик таймера для обновления состояния эмиттера и отрисовки
@@ -76,10 +60,10 @@ namespace LAB6
                 emitter.Render(g); // Отрисовка эмиттера
             }
 
-            picDisplay.Invalidate(); // Обновление отображения
+            picDisplay.Invalidate(); // Обновление отображения. Invalidate() - эл упр помечается недействительным и обновляет
         }
 
-        // Обработчик движения мыши по picDisplay для привязки позиции эмиттера
+        // Обработчик движения мыши по picDisplay для привязки позиции
         private void picDisplay_MouseMove(object sender, MouseEventArgs e)
         {
             if (checkBoxWand.Checked) // Проверка включен ли CheckBox
@@ -97,20 +81,6 @@ namespace LAB6
         {
             emitter.Direction = tbDirection.Value; // Изменение направления эмиттера
             lblDirection.Text = $"{tbDirection.Value}°"; // Обновление текста метки
-        }
-
-        // Обработчик изменения значения ползунка силы гравитации для первой точки
-        private void tbGraviton_Scroll(object sender, EventArgs e)
-        {
-            point1.Power = tbGraviton.Value; // Изменение силы гравитации
-            lblGraviton.Text = $"{tbGraviton.Value}°"; // Обновление текста метки
-        }
-
-        // Обработчик изменения значения ползунка силы гравитации для второй точки
-        private void tbGraviton2_Scroll(object sender, EventArgs e)
-        {
-            point2.Power = tbGraviton2.Value; // Изменение силы гравитации
-            lblGraviton2.Text = $"{tbGraviton2.Value}°"; // Обновление текста метки
         }
 
         // Обработчик клика мыши по picDisplay для добавления телепортатора или поедателя
@@ -182,28 +152,6 @@ namespace LAB6
                 }
                 picDisplay.Invalidate();
             }
-        }
-
-        // Обработчик изменения состояния CheckBox для включения/выключения гравитации
-        private void checkBoxGravity_CheckedChanged(object sender, EventArgs e)
-        {
-            gravityEnabled = checkBoxGravity.Checked;
-
-            if (gravityEnabled)
-            {
-                // Включение гравитации, добавление гравитационных точек к эмиттеру
-                emitter.impactPoints.Add(point1);
-                emitter.impactPoints.Add(point2);
-            }
-            else
-            {
-                // Выключение гравитации, удаление гравитационных точек из эмиттера
-                emitter.impactPoints.Remove(point1);
-                emitter.impactPoints.Remove(point2);
-            }
-            tbGraviton.Enabled = checkBoxGravity.Checked;
-            tbGraviton2.Enabled = checkBoxGravity.Checked;
-            picDisplay.Invalidate(); // Обновление отображения
         }
 
         // Обработчик изменения состояния CheckBox для включения/выключения привязки позиции эмиттера к курсору

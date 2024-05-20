@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace LAB6
 {
-
    public  class Emitter
     {
         public List<Particle> particles = new List<Particle>();
@@ -24,7 +23,7 @@ namespace LAB6
         public int RadiusMax = 10; // максимальный радиус частицы
         public int LifeMin = 20; // минимальное время жизни частицы
         public int LifeMax = 100; // максимальное время жизни частицы
-        public int ParticlesPerTick = 1; // количество частиц в такт
+        public int ParticlesPerTick = 1; // количество частиц
 
         public Color ColorFrom = Color.White; // начальный цвет частицы
         public Color ColorTo = Color.FromArgb(0, Color.Black); // конечный цвет частиц
@@ -83,7 +82,7 @@ namespace LAB6
                     particle.Y += particle.SpeedY;
                     particle.Life -= 1;
 
-                    // Применение воздействия точек гравитации
+                    // Применение воздействия точек гравитации (Гравитон)
                     foreach (var point in impactPoints)
                     {
                         point.ImpactParticle(particle);
@@ -108,11 +107,12 @@ namespace LAB6
         // Метод для отрисовки всех частиц и точек воздействия
         public void Render(Graphics g)
         {
+            // отрисовка частиц
             foreach (var particle in particles)
             {
                 particle.Draw(g);
             }
-            // точки притяжения
+            // Отрисовка элементов (телепорт, поедатель)
             foreach (var point in impactPoints)
             {
                 point.Render(g);
@@ -127,8 +127,8 @@ namespace LAB6
             particle.X = X;
             particle.Y = Y;
 
-            var direction = Direction + (double)Particle.rand.Next(Spreading) - Spreading / 2;
-            var speed = Particle.rand.Next(SpeedMin, SpeedMax);
+            var direction = Direction + (double)Particle.rand.Next(Spreading) - Spreading / 2; // Направление
+            var speed = Particle.rand.Next(SpeedMin, SpeedMax); 
 
             particle.SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
             particle.SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);
@@ -136,7 +136,7 @@ namespace LAB6
             particle.Radius = Particle.rand.Next(RadiusMin, RadiusMax);
 
             // Сброс цвета на начальный
-            if (particle is ParticleColorful colorfulParticle)
+            if (particle is ParticleColorful colorfulParticle) // Является ли объект particle экземпляром класса ParticleColorful
             {
                 colorfulParticle.FromColor = ColorFrom;
                 colorfulParticle.ToColor = ColorTo;

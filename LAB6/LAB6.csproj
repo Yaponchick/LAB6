@@ -92,6 +92,7 @@
     <Content Include="circle.png" />
     <Content Include="circleRGB.png" />
     <Content Include="cloud.jpg" />
+    <Content Include="Анимация.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
